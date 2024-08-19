@@ -7,8 +7,7 @@
     const client = new Discord.Client({
         intents: [
             Discord.GatewayIntentBits.Guilds,
-            Discord.GatewayIntentBits.GuildMembers
-            /*Discord.GatewayIntentBits.GuildBans,
+            Discord.GatewayIntentBits.GuildMembers,
             Discord.GatewayIntentBits.GuildEmojisAndStickers,
             Discord.GatewayIntentBits.GuildIntegrations,
             Discord.GatewayIntentBits.GuildWebhooks,
@@ -21,16 +20,16 @@
             Discord.GatewayIntentBits.DirectMessageReactions,
             Discord.GatewayIntentBits.DirectMessageTyping,
             Discord.GatewayIntentBits.GuildScheduledEvents,
-            Discord.GatewayIntentBits.MessageContent*/
+            Discord.GatewayIntentBits.MessageContent,
         ],
-        /*partials: [
+        partials: [
             Discord.Partials.Channel,
             Discord.Partials.GuildMember,
             Discord.Partials.Message,
             Discord.Partials.Reaction,
             Discord.Partials.User,
             Discord.Partials.GuildScheduledEvent
-        ],*/
+        ],
     });
 
 
@@ -70,8 +69,8 @@
         token: client.webhooks.warnLogs.token,
     });
 
-    fs.readdirSync(path.join(__dirname, 'handlers')).forEach((dir) => {
-        fs.readdirSync(path.join(__dirname, 'handlers', dir)).forEach((handler) => {
+    fs.readdirSync('./src/handlers').forEach((dir) => {
+        fs.readdirSync(`./src/handlers/${dir}`).forEach((handler) => {
             require(`./handlers/${dir}/${handler}`)(client);
         });
     });

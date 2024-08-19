@@ -33,7 +33,7 @@ module.exports = (client) => {
             
             try {
                 commands.push(command.data);
-                console.log(command)
+                console.log(command.data.options[0])
                 console.log('Loading Command')
                 interactionLogs.send({
                     username: 'Bot Logs',
@@ -60,7 +60,7 @@ module.exports = (client) => {
     (async () => {
         try {
             const embed = new Discord.EmbedBuilder()
-                .setDescription(`Started refreshing application (guild) (/) commands.`)
+                .setDescription(`Started refreshing application (/) commands.`)
                 .setColor(client.config.colors.normal)
             interactionLogs.send({
                 username: 'Bot Logs',
@@ -71,9 +71,8 @@ module.exports = (client) => {
                 Routes.applicationGuildCommands(client.config.discord.id, process.env.DISCORD_GUILD_ID),
                 { body: commands },
             )
-
             const embedFinal = new Discord.EmbedBuilder()
-                .setDescription(`Successfully reloaded ${commands.length} application st guild (/) commands.`)
+                .setDescription(`Successfully reloaded ${commands.length} guild (/) commands.`)
                 .setColor(client.config.colors.normal)
             interactionLogs.send({
                 username: 'Bot Logs',

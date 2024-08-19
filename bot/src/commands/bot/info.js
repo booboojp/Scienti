@@ -3,6 +3,7 @@ const moment = require("moment");
 require("moment-duration-format");
 
 module.exports = async (client, interaction, args) => {
+    console.log('Look Mom, I am doing something!');
     const promises = [
         client.shard.broadcastEval(client => client.guilds.cache.size),
         client.shard.broadcastEval(client => client.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
